@@ -32,8 +32,9 @@ public class Tabuleiro {
 	public Peca peca(Posicao posicao) {
 		if(! posicaoExist(posicao)) {
 			throw new TabuleiroException("Posição não existe");
-		}
-		return pecas(posicao.getLinha(), posicao.getColuna());
+		
+	}
+		 return pecas(posicao.getLinha(), posicao.getColuna());
 	}
 	public void lugarPeca(Peca peca, Posicao posicao) {
 		if(thereIsApeca(posicao)) {
@@ -51,9 +52,6 @@ public class Tabuleiro {
 		
 	}
 	public boolean thereIsApeca(Posicao posicao) {
-		if(! posicaoExist(posicao)) {
-			throw new TabuleiroException("Posição não existe");
-		}
 		return peca(posicao) != null;
 	}
 }

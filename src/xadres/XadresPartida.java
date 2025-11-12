@@ -1,6 +1,5 @@
 package xadres;
 
-import jogotaboleiro.Posicao;
 import jogotaboleiro.Tabuleiro;
 import xadres.peca.Rei;
 import xadres.peca.Torre;
@@ -22,9 +21,13 @@ public class XadresPartida {
 	  }
    return	mat;
 	}
+	private void pecaNewPeca( char coluna, int linha, XadresPeca peca) {
+		tabuleiro.lugarPeca(peca, new XadresPosicao(coluna, linha).toPosicao());
+	}
+	
 	private void initialSetup() {
-		tabuleiro.lugarPeca(new Torre(tabuleiro, Cor.Branco), new Posicao(2 , 1));
-		tabuleiro.lugarPeca(new Rei(tabuleiro, Cor.Preto), new Posicao(0 , 4));
-		tabuleiro.lugarPeca(new Rei(tabuleiro, Cor.Branco), new Posicao(7, 4));
+		pecaNewPeca('b' , 6 , new Torre(tabuleiro, Cor.Branco));
+		pecaNewPeca('e' , 8 , new Rei(tabuleiro, Cor.Preto));
+		pecaNewPeca('e' , 1 , new Rei(tabuleiro, Cor.Branco));
 	}
 }
