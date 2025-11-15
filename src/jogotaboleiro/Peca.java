@@ -1,5 +1,7 @@
 package jogotaboleiro;
 
+import xadres.Cor;
+
 public class Peca {
 
 	protected Posicao posicao;
@@ -14,6 +16,12 @@ public class Peca {
 
 	protected  Tabuleiro getTabuleiro() {
 		return tabuleiro;
+	}
+
+
+	public static Cor getColor() {
+		
+		return null;
 	}
     
     
