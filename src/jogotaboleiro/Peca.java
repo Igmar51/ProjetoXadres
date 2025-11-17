@@ -2,15 +2,15 @@ package jogotaboleiro;
 
 import xadres.Cor;
 
-public class Peca {
+public abstract class Peca {
 
 	protected Posicao posicao;
     private Tabuleiro tabuleiro;
     
     
 	public Peca(Tabuleiro tabuleiro) {
-	
 		this.tabuleiro = tabuleiro;
+		posicao = null;
 	}
 
 
@@ -25,5 +25,26 @@ public class Peca {
 	}
     
     
-    
-}
+    public abstract boolean[][] possibleMoves();
+    	
+    	public boolean possibleMoves(Posicao posicao) {
+    		return possibleMoves()[posicao.getLinha()][posicao.getColuna()];
+			
+		}
+    	
+    	public boolean isThereAnyPossibleMoves() {
+    	boolean[][]mat = possibleMoves();
+    	for(int i = 0 ; i < mat.length ; i++) {
+    		for(int j = 0 ; j < mat.length; i++) {
+    			if(mat[i][j]) {
+    				return true;
+    			}
+    			
+    		}
+    	}
+    	return false;
+    		
+    		
+    	}
+    }
+

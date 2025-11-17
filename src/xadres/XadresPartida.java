@@ -45,6 +45,9 @@ public class XadresPartida {
 		if(!tabuleiro.thereIsApeca(posicao)) {
 			throw new XadresException("Não existe peça nesta posição; ");
 		}
+		if(!tabuleiro.peca(posicao).isThereAnyPossibleMoves()) {
+			throw new XadresException("Nõa existe movimentos pociveis para esta peça");
+		}
 	}
 	
 	private void pecaNewPeca( char coluna, int linha, XadresPeca peca) {
