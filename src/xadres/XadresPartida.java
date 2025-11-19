@@ -26,17 +26,18 @@ public class XadresPartida {
 	
 	public XadresPeca performXadresMove(XadresPosicao sourcePosicao, XadresPosicao tarPosicao) {
 	   Posicao source = sourcePosicao.toPosicao();
-	   Posicao targer   = tarPosicao.toPosicao();
+	   Posicao target   = tarPosicao.toPosicao();
 	   validateSourcePosicao(source);
-	   Peca capituraPeca = makeMove(source, targer);
+	   validateTargetPosicao(source, target);
+	   Peca capituraPeca = makeMove(source, target);
 	   return (XadresPeca) capituraPeca;
 		
 	}
 	
-	private Peca makeMove(Posicao source , Posicao targer) {
+	private Peca makeMove(Posicao source , Posicao target) {
 		Peca p = tabuleiro.removePeca(source);
-		Peca capturadaPeca = tabuleiro.removePeca(targer);
-		tabuleiro.lugarPeca(p, targer);
+		Peca capturadaPeca = tabuleiro.removePeca(target);
+		tabuleiro.lugarPeca(p, target);
 		return capturadaPeca;
 		
 	}
@@ -48,6 +49,16 @@ public class XadresPartida {
 		if(!tabuleiro.peca(posicao).isThereAnyPossibleMoves()) {
 			throw new XadresException("Nõa existe movimentos pociveis para esta peça");
 		}
+	}
+	
+	public void validateTargetPosicao(Posicao source, Posicao target) {
+		if(!tabuleiro.peca(source).possibleMoves(target)) {
+			throw new XadresException("A peca não pode ser removida para o local de destino");
+		}
+				
+		
+		
+		
 	}
 	
 	private void pecaNewPeca( char coluna, int linha, XadresPeca peca) {

@@ -29,9 +29,9 @@ public class Programa {
 		
 		System.out.println();
 		System.out.println("Destino; ");
-		XadresPosicao targer = UI.readXadresPosicao(sc);
+		XadresPosicao target = UI.readXadresPosicao(sc);
 		
-		XadresPeca capituraPeca = partidaXadres.performXadresMove(source, targer);
+		XadresPeca capituraPeca = partidaXadres.performXadresMove(source, target);
 	
 		}
 		catch (XadresException e) {

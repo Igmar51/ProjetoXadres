@@ -1,6 +1,7 @@
 package xadres;
 
 import jogotaboleiro.Peca;
+import jogotaboleiro.Posicao;
 import jogotaboleiro.Tabuleiro;
 
 public abstract class XadresPeca extends Peca{
@@ -16,5 +17,9 @@ public abstract class XadresPeca extends Peca{
 		return cor;
 	}
 
+	protected  boolean isThereOpponentPeca(Posicao posicao) {
+		XadresPeca p = (XadresPeca) getTabuleiro().peca(posicao);
 		
+		return p != null && p.getCor() != cor;
+}
 }
