@@ -56,6 +56,7 @@ public class Tabuleiro {
 		aux.posicao = null;
 		pecas[posicao.getLinha()][posicao.getColuna()]= null;
 		return aux;
+		
 	}
 	
 	private boolean posicaoExist(int linha , int coluna) {

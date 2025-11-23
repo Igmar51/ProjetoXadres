@@ -24,11 +24,15 @@ public class Programa {
 		UI.clearScreen();	
 		UI.printTabuleiro(partidaXadres.getPecas());
 		System.out.println();
-		System.out.println("Source; ");
+		System.out.print("Source; ");
 		XadresPosicao source = UI.readXadresPosicao(sc);
 		
+		boolean[][] possibleMoves = partidaXadres.possibleMoves(source);
+		UI.clearScreen();
+		UI.printTabuleiro(partidaXadres.getPecas() , possibleMoves);
+		
 		System.out.println();
-		System.out.println("Destino; ");
+		System.out.print("Destino; ");
 		XadresPosicao target = UI.readXadresPosicao(sc);
 		
 		XadresPeca capituraPeca = partidaXadres.performXadresMove(source, target);

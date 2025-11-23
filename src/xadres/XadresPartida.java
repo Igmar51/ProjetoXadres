@@ -23,6 +23,12 @@ public class XadresPartida {
 	  }
    return	mat;
 	}
+	 
+	public boolean[][]  possibleMoves(XadresPosicao sourcePosicao) {
+		Posicao posicao = sourcePosicao.toPosicao();
+		validateSourcePosicao(posicao);
+		return tabuleiro.peca(posicao).possibleMoves();
+	}
 	
 	public XadresPeca performXadresMove(XadresPosicao sourcePosicao, XadresPosicao tarPosicao) {
 	   Posicao source = sourcePosicao.toPosicao();

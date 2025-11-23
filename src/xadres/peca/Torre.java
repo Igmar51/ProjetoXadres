@@ -25,7 +25,7 @@ public class Torre extends XadresPeca{
 		
 		Posicao p = new Posicao(0, 0);
 		//Acima
-	    p.steValues(posicao.getLinha() -1, posicao.getColuna());
+	    p.setValues(posicao.getLinha() -1, posicao.getColuna());
 	    while (getTabuleiro().posicaoExist(p) && !getTabuleiro().thereIsApeca(p)){
 	    	mat[p.getLinha()][p.getColuna()] = true;
 	    	p.setLinha(p.getLinha() - 1);
@@ -36,7 +36,7 @@ public class Torre extends XadresPeca{
 	    		
 	    	}
 	    	//Esquerda
-	    	 p.steValues(posicao.getLinha(), posicao.getColuna() - 1);
+	    	 p.setValues(posicao.getLinha(), posicao.getColuna() - 1);
 	 	    while (getTabuleiro().posicaoExist(p) && !getTabuleiro().thereIsApeca(p)){
 	 	    	mat[p.getLinha()][p.getColuna()] = true;
 	 	    	p.setColuna(p.getColuna() - 1);
@@ -47,7 +47,7 @@ public class Torre extends XadresPeca{
 	 	    		
 	 	    	}
 	 	    	//Direita
-		    	 p.steValues(posicao.getLinha(), posicao.getColuna() + 1);
+		    	 p.setValues(posicao.getLinha(), posicao.getColuna() + 1);
 		 	    while (getTabuleiro().posicaoExist(p) && !getTabuleiro().thereIsApeca(p)){
 		 	    	mat[p.getLinha()][p.getColuna()] = true;
 		 	    	p.setColuna(p.getColuna() + 1);
@@ -58,7 +58,7 @@ public class Torre extends XadresPeca{
 		 	    		
 		 	    	}
 		 	    	//Abaixo
-		 	    	p.steValues(posicao.getLinha() + 1, posicao.getColuna());
+		 	    	p.setValues(posicao.getLinha() + 1, posicao.getColuna());
 		 		    while (getTabuleiro().posicaoExist(p) && !getTabuleiro().thereIsApeca(p)){
 		 		    	mat[p.getLinha()][p.getColuna()] = true;
 		 		    	p.setLinha(p.getLinha() + 1);

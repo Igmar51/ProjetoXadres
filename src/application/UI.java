@@ -53,7 +53,7 @@ public class UI {
 		for(int i = 0 ; i < peca.length ; i ++) {
 			System.out.print((8 - i + " "));
 			for(int j = 0 ; j < peca.length ; j++) {
-				printPeca(peca[i][j]);
+				printPeca(peca[i][j], false);
 			}
 			
 			System.out.println();
@@ -62,10 +62,28 @@ public class UI {
 		System.out.println("  a b c d e f g h");
 		
 	}
-	public static void printPeca(XadresPeca peca) {
 	
+	
+public static void printTabuleiro(XadresPeca[][] peca , boolean[][] possibleMoves) {
+	for(int i = 0 ; i < peca.length ; i ++) {
+		System.out.print((8 - i + " "));
+		for(int j = 0 ; j < peca.length ; j++) {
+			printPeca(peca[i][j], possibleMoves[i][j]);
+		}
+		
+		System.out.println();
+	}
+	
+	System.out.println("  a b c d e f g h");
+	
+}
+
+	public static void printPeca(XadresPeca peca , boolean breckground) {
+	            if(breckground) {
+	            	System.out.print(ANSI_BLUE_BACKGROUND);
+	            }
 		    	if (peca == null) {
-            System.out.print("-");
+            System.out.print("-"+ ANSI_RESET);
         } 
         else {
             if (peca.getColor() == Cor.Branco) {
