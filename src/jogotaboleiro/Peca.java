@@ -19,6 +19,7 @@ public abstract class Peca {
 	}
 
 
+	
 	public static Cor getColor() {
 		
 		return null;

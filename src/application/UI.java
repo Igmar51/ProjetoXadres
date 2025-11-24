@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import xadres.Cor;
+import xadres.XadresPartida;
 import xadres.XadresPeca;
 import xadres.XadresPosicao;
 
@@ -49,6 +50,17 @@ public class UI {
 		throw new InputMismatchException("Erro lendo posição de xadres posição valida a1 h8 ;");
 	}
 	}	
+	
+	public static void printMach(XadresPartida xadresPartida) {
+		printTabuleiro(xadresPartida.getPecas());
+		System.out.println();
+		System.out.println("Turn ;"+ xadresPartida.getTurn());
+		System.out.println("Jogador esperando; "+ xadresPartida.getCurrentPlayer());
+		
+		
+		
+	}
+	
 	public static void printTabuleiro(XadresPeca[][] peca) {
 		for(int i = 0 ; i < peca.length ; i ++) {
 			System.out.print((8 - i + " "));

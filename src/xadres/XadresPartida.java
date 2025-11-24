@@ -8,12 +8,24 @@ import xadres.peca.Torre;
 
 public class XadresPartida {
 
+	private int turn;
+	private Cor currentPlayer;
 	private Tabuleiro tabuleiro;
 	
 	public XadresPartida() {
 		tabuleiro = new Tabuleiro(8, 8);
+		turn = 1;
+		currentPlayer =Cor.Branco;
 		initialSetup();
 	}
+	
+	public int getTurn() {
+		return turn;
+	}
+	public Cor getCurrentPlayer() {
+		return currentPlayer;
+	}
+	
 	public XadresPeca[][] getPecas() {
 		XadresPeca[][] mat = new XadresPeca[tabuleiro.getLinhas()][tabuleiro.getColunas()];
 	  for (int i = 0 ; i < tabuleiro.getLinhas(); i++) {
@@ -36,6 +48,7 @@ public class XadresPartida {
 	   validateSourcePosicao(source);
 	   validateTargetPosicao(source, target);
 	   Peca capituraPeca = makeMove(source, target);
+	   nextTurn();
 	   return (XadresPeca) capituraPeca;
 		
 	}
@@ -52,6 +65,9 @@ public class XadresPartida {
 		if(!tabuleiro.thereIsApeca(posicao)) {
 			throw new XadresException("Não existe peça nesta posição; ");
 		}
+		if(currentPlayer != ((XadresPeca)tabuleiro.peca(posicao)).getCor()) {
+			throw new XadresException("Esta peça não e sua ; ");
+		}
 		if(!tabuleiro.peca(posicao).isThereAnyPossibleMoves()) {
 			throw new XadresException("Nõa existe movimentos pociveis para esta peça");
 		}
@@ -62,10 +78,14 @@ public class XadresPartida {
 			throw new XadresException("A peca não pode ser removida para o local de destino");
 		}
 				
-		
-		
-		
 	}
+		private void nextTurn() {
+			turn ++;
+			currentPlayer = (currentPlayer == Cor.Branco) ? Cor.Preto : Cor.Branco;
+			
+		}
+		
+	
 	
 	private void pecaNewPeca( char coluna, int linha, XadresPeca peca) {
 		tabuleiro.lugarPeca(peca, new XadresPosicao(coluna, linha).toPosicao());

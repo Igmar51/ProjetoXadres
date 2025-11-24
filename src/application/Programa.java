@@ -22,7 +22,7 @@ public class Programa {
 		while (true) {
 		try {	
 		UI.clearScreen();	
-		UI.printTabuleiro(partidaXadres.getPecas());
+		UI.printMach(partidaXadres);
 		System.out.println();
 		System.out.print("Source; ");
 		XadresPosicao source = UI.readXadresPosicao(sc);

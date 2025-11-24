@@ -22,4 +22,6 @@ public abstract class XadresPeca extends Peca{
 		
 		return p != null && p.getCor() != cor;
 }
+
+		
 }
