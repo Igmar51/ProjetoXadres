@@ -29,7 +29,7 @@ public class XadresPosicao {
 	
 	protected static XadresPosicao fromPosicao(Posicao posicao) {
 		
-	return new XadresPosicao((char)('a' - posicao.getColuna()), 8 - posicao.getLinha());
+	return new XadresPosicao((char)('a' + posicao.getColuna()), 8 - posicao.getLinha());
 		
 	}
 

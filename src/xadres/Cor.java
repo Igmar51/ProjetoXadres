@@ -2,7 +2,7 @@ package xadres;
 
 public enum Cor {
 
-	Branco,
-	Preto;
+	WHITE,
+	BLACK;
 	
 } 

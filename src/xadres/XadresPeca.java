@@ -17,6 +17,12 @@ public abstract class XadresPeca extends Peca{
 		return cor;
 	}
 
+	public XadresPosicao getXadesPosicao() {
+		
+		return XadresPosicao.fromPosicao(posicao);
+		
+		
+	}
 	protected  boolean isThereOpponentPeca(Posicao posicao) {
 		XadresPeca p = (XadresPeca) getTabuleiro().peca(posicao);
 		

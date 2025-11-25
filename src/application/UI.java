@@ -1,8 +1,11 @@
 package application;
 
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import xadres.Cor;
 import xadres.XadresPartida;
@@ -51,12 +54,17 @@ public class UI {
 	}
 	}	
 	
-	public static void printMach(XadresPartida xadresPartida) {
+	public static void printMach(XadresPartida xadresPartida, List<XadresPeca> capiturada) {
 		printTabuleiro(xadresPartida.getPecas());
+		System.out.println();
+		printCapituraPecas(capiturada);
 		System.out.println();
 		System.out.println("Turn ;"+ xadresPartida.getTurn());
 		System.out.println("Jogador esperando; "+ xadresPartida.getCurrentPlayer());
-		
+		if(xadresPartida.getCheck()) {
+			System.out.println("CHECK! ");
+			
+		}
 		
 		
 	}
@@ -97,14 +105,32 @@ public static void printTabuleiro(XadresPeca[][] peca , boolean[][] possibleMove
 		    	if (peca == null) {
             System.out.print("-"+ ANSI_RESET);
         } 
-        else {
-            if (peca.getColor() == Cor.Branco) {
+		   else {
+            if (peca.getCor() == Cor.WHITE) {
                 System.out.print(ANSI_WHITE + peca + ANSI_RESET);
             }
             else {
                 System.out.print(ANSI_YELLOW + peca + ANSI_RESET);
             }
-        }
-        System.out.print(" "); 
+		    	}
+            System.out.print(" ");
+	}
+	
+        
+	
+	public static void printCapituraPecas(List<XadresPeca> capiturada) {
+		List<XadresPeca> white = capiturada.stream().filter(x -> x!= null && x.getCor() == Cor.WHITE).collect(Collectors.toList());
+		List<XadresPeca> black = capiturada.stream().filter(x -> x != null && x.getCor() == Cor.BLACK).collect(Collectors.toList());
+		System.out.println("Capitura de peças: ");
+		System.out.print("Branca: ");
+		System.out.print(ANSI_WHITE);
+		System.out.println(Arrays.toString(white.toArray()));
+		System.out.print(ANSI_RESET);
+		System.out.print("Preta: ");
+		System.out.print(ANSI_YELLOW);
+		System.out.println(Arrays.toString(black.toArray()));
+		System.out.println(ANSI_RESET);
+		
+		
 	}
 }

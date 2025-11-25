@@ -1,11 +1,10 @@
 package application;
 
-import java.lang.annotation.Target;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
-import jogotaboleiro.Posicao;
-import jogotaboleiro.Tabuleiro;
 import xadres.XadresException;
 import xadres.XadresPartida;
 import xadres.XadresPeca;
@@ -18,11 +17,12 @@ public class Programa {
 		Scanner sc = new Scanner(System.in);
 		
 		XadresPartida partidaXadres = new XadresPartida();
+		List<XadresPeca> capiturada = new ArrayList<>();		
 		
 		while (true) {
 		try {	
 		UI.clearScreen();	
-		UI.printMach(partidaXadres);
+		UI.printMach(partidaXadres, capiturada);
 		System.out.println();
 		System.out.print("Source; ");
 		XadresPosicao source = UI.readXadresPosicao(sc);
@@ -36,7 +36,10 @@ public class Programa {
 		XadresPosicao target = UI.readXadresPosicao(sc);
 		
 		XadresPeca capituraPeca = partidaXadres.performXadresMove(source, target);
-	
+	     if(capiturada != null) {
+	    	 capiturada.add(capituraPeca);
+	     }
+		
 		}
 		catch (XadresException e) {
 			System.out.println(e.getMessage());
