@@ -19,7 +19,7 @@ public class Programa {
 		XadresPartida partidaXadres = new XadresPartida();
 		List<XadresPeca> capiturada = new ArrayList<>();		
 		
-		while (true) {
+		while (!partidaXadres.getCheckMate()) {
 		try {	
 		UI.clearScreen();	
 		UI.printMach(partidaXadres, capiturada);
@@ -49,6 +49,8 @@ public class Programa {
 			System.out.println(e.getMessage());
 			sc.nextLine();
 		}
-		}
+	}
+		UI.clearScreen();
+		UI.printMach(partidaXadres, capiturada);
 	}
 }

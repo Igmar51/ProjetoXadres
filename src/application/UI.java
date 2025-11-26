@@ -60,12 +60,17 @@ public class UI {
 		printCapituraPecas(capiturada);
 		System.out.println();
 		System.out.println("Turn ;"+ xadresPartida.getTurn());
+		
+		if(xadresPartida.getCheckMate()) {
 		System.out.println("Jogador esperando; "+ xadresPartida.getCurrentPlayer());
 		if(xadresPartida.getCheck()) {
 			System.out.println("CHECK! ");
-			
+		  }
 		}
-		
+		else {
+			System.out.println("CHECKMATE ;");
+			System.out.println("Vencedor ;"+ xadresPartida.getCurrentPlayer());
+		}
 		
 	}
 	

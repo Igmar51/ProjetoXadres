@@ -16,7 +16,7 @@ public class XadresPartida {
 	private Cor currentPlayer;
 	private Tabuleiro tabuleiro;
 	private boolean check;
-	
+	private boolean checkMate;
 	
 	private List<Peca> pecasOnTheTabuleiro = new ArrayList<>();
 	private List<Peca> pecasCapiturada = new ArrayList<>();
@@ -37,6 +37,9 @@ public class XadresPartida {
 	
 	public boolean getCheck() {
 		return check;
+	}
+	public boolean getCheckMate() {
+		return checkMate;
 	}
 	
 	public XadresPeca[][] getPecas() {
@@ -61,14 +64,22 @@ public class XadresPartida {
 	   validateSourcePosicao(source);
 	   validateTargetPosicao(source, target);
 	   Peca capituraPeca = makeMove(source, target);
+	   
 	   if(testCheck(currentPlayer)) {
 		   undoMove(source, target, capituraPeca);
 		   throw new XadresException("Voce não pode colocar em check; ");
 	   }
 	   check = (testCheck(opponent(currentPlayer)))? true : false;
 	   
-	   nextTurn();
-	   return (XadresPeca) capituraPeca;
+	   if(testCheckMate(opponent(currentPlayer))){
+		   
+		   checkMate = true;
+	   }
+	   else {
+		   nextTurn();
+	   }
+	   
+	 return (XadresPeca) capituraPeca;
 		
 	}
 	
@@ -148,6 +159,32 @@ public class XadresPartida {
 	}
 	return false;
 }
+	private boolean testCheckMate(Cor cor) {
+		if(! testCheck(cor)) {
+			return false;
+		}
+		List<Peca> list = pecasOnTheTabuleiro.stream().filter(x -> ((XadresPeca)x).getCor() == cor).collect(Collectors.toList());	
+		for(Peca p : list) {
+			boolean[][] mat = p.possibleMoves();
+			for(int i = 0 ; i < tabuleiro.getLinhas(); i++) {
+				for(int j = 0; j < tabuleiro.getColunas(); j++) {
+					if(mat[i][j]) {
+						Posicao source = ((XadresPeca)p).getXadesPosicao().toPosicao();
+						Posicao target = new Posicao(i, j);
+						Peca capituraPeca = makeMove(source, target);
+						boolean testCheck = testCheck(cor);
+						undoMove(source, target, capituraPeca);
+						if(!checkMate) {
+							return false;
+						}
+						
+				  }
+				}
+			}
+			
+		}
+		return true;
+	}
 	
 	private void pecaNewPeca( char coluna, int linha, XadresPeca peca) {
 		tabuleiro.lugarPeca(peca, new XadresPosicao(coluna, linha).toPosicao());
@@ -155,21 +192,13 @@ public class XadresPartida {
 	}
 	
 	private void initialSetup() {
-	//	pecaNewPeca('b', 6, new Torre(tabuleiro, Cor.Branco));
-		pecaNewPeca('e', 8, new  Torre(tabuleiro, Cor.BLACK));
-		pecaNewPeca('e', 1, new Torre(tabuleiro, Cor.WHITE));
-		pecaNewPeca('c', 1, new Torre(tabuleiro, Cor.WHITE));
-		pecaNewPeca('c', 2, new Torre(tabuleiro, Cor.WHITE));
-		pecaNewPeca('d', 2, new Torre(tabuleiro, Cor.WHITE));
-		pecaNewPeca('e', 2, new Torre(tabuleiro, Cor.WHITE));
-	//	pecaNewPeca('e', 1, new Torre(tabuleiro, Cor.Branco));
-		pecaNewPeca('d', 1, new Rei(tabuleiro, Cor.WHITE));
-
-		pecaNewPeca('c', 7, new Torre(tabuleiro, Cor.BLACK));
-		pecaNewPeca('c', 8, new Torre(tabuleiro, Cor.BLACK));
-		pecaNewPeca('d', 7, new Torre(tabuleiro, Cor.BLACK));
-		pecaNewPeca('e', 7, new Torre(tabuleiro, Cor.BLACK));
-	//	pecaNewPeca('e', 8, new Torre(tabuleiro, Cor.Preto));
-		pecaNewPeca('d', 8, new Rei(tabuleiro, Cor.BLACK));
+	
+		pecaNewPeca('h', 7, new Torre(tabuleiro, Cor.WHITE));
+		pecaNewPeca('d', 1, new Torre(tabuleiro, Cor.WHITE));
+		pecaNewPeca('e', 1, new Rei(tabuleiro, Cor.WHITE));
+	
+		pecaNewPeca('b', 8, new Torre(tabuleiro, Cor.BLACK));
+		pecaNewPeca('a', 8, new Rei(tabuleiro, Cor.BLACK));
+		
 	}
 }
