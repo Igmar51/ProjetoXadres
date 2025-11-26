@@ -9,7 +9,6 @@ import jogotaboleiro.Posicao;
 import jogotaboleiro.Tabuleiro;
 import xadres.peca.Rei;
 import xadres.peca.Torre;
-
 public class XadresPartida {
 
 	private int turn;
@@ -84,7 +83,8 @@ public class XadresPartida {
 	}
 	
 	private Peca makeMove(Posicao source , Posicao target) {
-		Peca p = tabuleiro.removePeca(source);
+		XadresPeca p = (XadresPeca)tabuleiro.removePeca(source);
+		p.increaseMoveCount();
 		Peca capturadaPeca = tabuleiro.removePeca(target);
 		tabuleiro.lugarPeca(p, target);
 		
@@ -98,7 +98,8 @@ public class XadresPartida {
 	}
 	
 	private void undoMove(Posicao source, Posicao targert, Peca capitraPeca) {
-		Peca p = tabuleiro.removePeca(targert);
+		XadresPeca p = (XadresPeca)tabuleiro.removePeca(targert);
+		p.decreaseMoveCount();
 		tabuleiro.lugarPeca(p, source);
 		
 		if(capitraPeca != null) {
