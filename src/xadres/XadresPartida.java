@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import jogotaboleiro.Peca;
 import jogotaboleiro.Posicao;
 import jogotaboleiro.Tabuleiro;
+import xadres.peca.Bispo;
+import xadres.peca.Peao;
 import xadres.peca.Rei;
 import xadres.peca.Torre;
 public class XadresPartida {
@@ -194,12 +196,32 @@ public class XadresPartida {
 	
 	private void initialSetup() {
 	
-		pecaNewPeca('h', 7, new Torre(tabuleiro, Cor.WHITE));
-		pecaNewPeca('d', 1, new Torre(tabuleiro, Cor.WHITE));
+		pecaNewPeca('a', 1, new Torre(tabuleiro, Cor.WHITE));
+		pecaNewPeca('c', 1, new Bispo(tabuleiro, Cor.WHITE));
 		pecaNewPeca('e', 1, new Rei(tabuleiro, Cor.WHITE));
-	
-		pecaNewPeca('b', 8, new Torre(tabuleiro, Cor.BLACK));
-		pecaNewPeca('a', 8, new Rei(tabuleiro, Cor.BLACK));
+		pecaNewPeca('f', 1, new Bispo(tabuleiro, Cor.WHITE));
+		pecaNewPeca('h', 1, new Torre(tabuleiro, Cor.WHITE));
+		pecaNewPeca('a', 2, new Peao(tabuleiro, Cor.WHITE));
+		pecaNewPeca('b', 2, new Peao(tabuleiro, Cor.WHITE));
+		pecaNewPeca('c', 2, new Peao(tabuleiro, Cor.WHITE));
+		pecaNewPeca('d', 2, new Peao(tabuleiro, Cor.WHITE));
+		pecaNewPeca('e', 2, new Peao(tabuleiro, Cor.WHITE));
+		pecaNewPeca('f', 2, new Peao(tabuleiro, Cor.WHITE));
+		pecaNewPeca('g', 2, new Peao(tabuleiro, Cor.WHITE));
+		pecaNewPeca('h', 2, new Peao(tabuleiro, Cor.WHITE));
 		
+		pecaNewPeca('a', 8, new Torre(tabuleiro, Cor.BLACK));
+		pecaNewPeca('c', 8, new Bispo(tabuleiro, Cor.BLACK));
+		pecaNewPeca('e', 8, new Rei(tabuleiro, Cor.BLACK));
+		pecaNewPeca('f', 8, new Bispo(tabuleiro, Cor.BLACK));
+		pecaNewPeca('h', 8, new Torre(tabuleiro, Cor.BLACK));
+		pecaNewPeca('a', 7, new Peao(tabuleiro, Cor.BLACK));
+		pecaNewPeca('b', 7, new Peao(tabuleiro, Cor.BLACK));
+		pecaNewPeca('c', 7, new Peao(tabuleiro, Cor.BLACK));
+		pecaNewPeca('d', 7, new Peao(tabuleiro, Cor.BLACK));
+		pecaNewPeca('e', 7, new Peao(tabuleiro, Cor.BLACK));
+		pecaNewPeca('f', 7, new Peao(tabuleiro, Cor.BLACK));
+		pecaNewPeca('g', 7, new Peao(tabuleiro, Cor.BLACK));
+		pecaNewPeca('h', 7, new Peao(tabuleiro, Cor.BLACK));
 	}
 }

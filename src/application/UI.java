@@ -61,7 +61,7 @@ public class UI {
 		System.out.println();
 		System.out.println("Turn ;"+ xadresPartida.getTurn());
 		
-		if(xadresPartida.getCheckMate()) {
+		if(!xadresPartida.getCheckMate()) {
 		System.out.println("Jogador esperando; "+ xadresPartida.getCurrentPlayer());
 		if(xadresPartida.getCheck()) {
 			System.out.println("CHECK! ");
@@ -70,8 +70,8 @@ public class UI {
 		else {
 			System.out.println("CHECKMATE ;");
 			System.out.println("Vencedor ;"+ xadresPartida.getCurrentPlayer());
-		}
 		
+		}
 	}
 	
 	public static void printTabuleiro(XadresPeca[][] peca) {
