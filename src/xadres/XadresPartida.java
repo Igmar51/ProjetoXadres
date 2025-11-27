@@ -8,6 +8,7 @@ import jogotaboleiro.Peca;
 import jogotaboleiro.Posicao;
 import jogotaboleiro.Tabuleiro;
 import xadres.peca.Bispo;
+import xadres.peca.Cavalo;
 import xadres.peca.Peao;
 import xadres.peca.Rei;
 import xadres.peca.Torre;
@@ -197,9 +198,11 @@ public class XadresPartida {
 	private void initialSetup() {
 	
 		pecaNewPeca('a', 1, new Torre(tabuleiro, Cor.WHITE));
+		pecaNewPeca('b', 1, new Cavalo(tabuleiro, Cor.WHITE));
 		pecaNewPeca('c', 1, new Bispo(tabuleiro, Cor.WHITE));
 		pecaNewPeca('e', 1, new Rei(tabuleiro, Cor.WHITE));
 		pecaNewPeca('f', 1, new Bispo(tabuleiro, Cor.WHITE));
+		pecaNewPeca('g', 1, new Cavalo(tabuleiro, Cor.WHITE));
 		pecaNewPeca('h', 1, new Torre(tabuleiro, Cor.WHITE));
 		pecaNewPeca('a', 2, new Peao(tabuleiro, Cor.WHITE));
 		pecaNewPeca('b', 2, new Peao(tabuleiro, Cor.WHITE));
@@ -211,9 +214,11 @@ public class XadresPartida {
 		pecaNewPeca('h', 2, new Peao(tabuleiro, Cor.WHITE));
 		
 		pecaNewPeca('a', 8, new Torre(tabuleiro, Cor.BLACK));
+		pecaNewPeca('b', 8, new Cavalo(tabuleiro, Cor.BLACK));
 		pecaNewPeca('c', 8, new Bispo(tabuleiro, Cor.BLACK));
 		pecaNewPeca('e', 8, new Rei(tabuleiro, Cor.BLACK));
 		pecaNewPeca('f', 8, new Bispo(tabuleiro, Cor.BLACK));
+		pecaNewPeca('g', 8, new Cavalo(tabuleiro, Cor.BLACK));
 		pecaNewPeca('h', 8, new Torre(tabuleiro, Cor.BLACK));
 		pecaNewPeca('a', 7, new Peao(tabuleiro, Cor.BLACK));
 		pecaNewPeca('b', 7, new Peao(tabuleiro, Cor.BLACK));
