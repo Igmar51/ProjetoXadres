@@ -97,21 +97,59 @@ public class XadresPartida {
 			pecasCapiturada.add(capturadaPeca);
 		}
 		
+		if(p instanceof Rei && target.getColuna() == source.getColuna() + 2) {
+			Posicao souceT = new Posicao(source.getLinha(),source.getColuna() + 3);
+			Posicao targetT = new Posicao(source.getLinha(),source.getColuna() + 1);
+			XadresPeca root = (XadresPeca)tabuleiro.removePeca(souceT);
+			tabuleiro.lugarPeca(root, targetT);
+			root.increaseMoveCount();
+			
+			
+		}
+		if(p instanceof Rei && target.getColuna() == source.getColuna() - 2) {
+			Posicao souceT = new Posicao(source.getLinha(),source.getColuna() - 4);
+			Posicao targetT = new Posicao(source.getLinha(),source.getColuna() - 1);
+			XadresPeca root = (XadresPeca)tabuleiro.removePeca(souceT);
+			tabuleiro.lugarPeca(root, targetT);
+			root.increaseMoveCount();
+			
+			
+		}
 		return capturadaPeca;
 		
 	}
 	
-	private void undoMove(Posicao source, Posicao targert, Peca capitraPeca) {
-		XadresPeca p = (XadresPeca)tabuleiro.removePeca(targert);
+	private void undoMove(Posicao source, Posicao target, Peca capitraPeca) {
+		XadresPeca p = (XadresPeca)tabuleiro.removePeca(target);
 		p.decreaseMoveCount();
 		tabuleiro.lugarPeca(p, source);
 		
 		if(capitraPeca != null) {
-			tabuleiro.lugarPeca(capitraPeca, targert);
+			tabuleiro.lugarPeca(capitraPeca, target);
 			pecasCapiturada.remove(capitraPeca);
 			pecasOnTheTabuleiro.add(capitraPeca);
 		}
 	
+	
+		if(p instanceof Rei && target.getColuna() == source.getColuna() + 2) {
+			Posicao souceT = new Posicao(source.getLinha(),source.getColuna() + 3);
+			Posicao targetT = new Posicao(source.getLinha(),source.getColuna() + 1);
+			XadresPeca root = (XadresPeca)tabuleiro.removePeca(target);
+			tabuleiro.lugarPeca(root, souceT);
+			root.decreaseMoveCount();
+			
+			
+		}
+		if(p instanceof Rei && target.getColuna() == source.getColuna() - 2) {
+			Posicao souceT = new Posicao(source.getLinha(),source.getColuna() - 4);
+			Posicao targetT = new Posicao(source.getLinha(),source.getColuna() - 1);
+			XadresPeca root = (XadresPeca)tabuleiro.removePeca(targetT);
+			tabuleiro.lugarPeca(root, souceT);
+			root.decreaseMoveCount();
+			
+			
+		}
+		
 	}
 	private void  validateSourcePosicao(Posicao posicao) {
 		if(!tabuleiro.thereIsApeca(posicao)) {
@@ -202,7 +240,7 @@ public class XadresPartida {
 		pecaNewPeca('b', 1, new Cavalo(tabuleiro, Cor.WHITE));
 		pecaNewPeca('c', 1, new Bispo(tabuleiro, Cor.WHITE));
 		pecaNewPeca('d', 1, new Rainha(tabuleiro, Cor.WHITE));
-		pecaNewPeca('e', 1, new Rei(tabuleiro, Cor.WHITE));
+		pecaNewPeca('e', 1, new Rei(tabuleiro, Cor.WHITE , this));
 		pecaNewPeca('f', 1, new Bispo(tabuleiro, Cor.WHITE));
 		pecaNewPeca('g', 1, new Cavalo(tabuleiro, Cor.WHITE));
 		pecaNewPeca('h', 1, new Torre(tabuleiro, Cor.WHITE));
@@ -219,7 +257,7 @@ public class XadresPartida {
 		pecaNewPeca('b', 8, new Cavalo(tabuleiro, Cor.BLACK));
 		pecaNewPeca('c', 8, new Bispo(tabuleiro, Cor.BLACK));
 		pecaNewPeca('d', 8, new Rainha(tabuleiro, Cor.BLACK));
-		pecaNewPeca('e', 8, new Rei(tabuleiro, Cor.BLACK));
+		pecaNewPeca('e', 8, new Rei(tabuleiro, Cor.BLACK , this));
 		pecaNewPeca('f', 8, new Bispo(tabuleiro, Cor.BLACK));
 		pecaNewPeca('g', 8, new Cavalo(tabuleiro, Cor.BLACK));
 		pecaNewPeca('h', 8, new Torre(tabuleiro, Cor.BLACK));
